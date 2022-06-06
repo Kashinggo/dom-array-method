@@ -6,7 +6,7 @@ const showMillionairesBtn = document.getElementById("show-millionaires");
 const sortBtn = document.getElementById("sort");
 const calculateWealthBtn = document.getElementById("calculate-wealth");
 
-const data = [];
+let data = [];
 
 getRandomUser();
 
@@ -34,7 +34,7 @@ function addData(obj) {
 
 // Double everyone's money
 function doubleMoney() {
-  data.map((user) => {
+  data = data.map((user) => {
     return { ...user, money: user.money * 2 };
   });
 
@@ -47,6 +47,11 @@ function sortByRichest() {
   updateDOM();
 }
 
+// Filter only millionaires
+function showMillionaires() {
+  data = data.filter((user) => user.money > 1000000);
+  updateDOM();
+}
 // Update DOM·
 function updateDOM(providedData = data) {
   main.innerHTML = "<h2><strong>Person</strong> Wealth</h2>";
@@ -71,3 +76,4 @@ function formatMoney(number) {
 addUserBtn.addEventListener("click", getRandomUser);
 doubleBtn.addEventListener("click", doubleMoney);
 sortBtn.addEventListener("click", sortByRichest);
+showMillionairesBtn.addEventListener("click", showMillionaires);
