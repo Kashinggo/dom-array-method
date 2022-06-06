@@ -32,7 +32,15 @@ function addData(obj) {
   updateDOM();
 }
 
-// Update DOM
+// Double everyone's money
+function doubleMoney() {
+  data.map((user) => {
+    return { ...user, money: user.money * 2 };
+  });
+
+  updateDOM();
+}
+// Update DOM·
 function updateDOM(providedData = data) {
   main.innerHTML = "<h2><strong>Person</strong> Wealth</h2>";
 
